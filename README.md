@@ -1,7 +1,7 @@
 # collapsible_navigation_bar
 
-A new Flutter package project.
-
+A customizable collapsible navigation bar.
+The `collapsible_navigation_bar` package for Flutter allows you to easily use lots of element in one navigator bar
 ## Getting Started
 
 This project is a starting point for a Dart

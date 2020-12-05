@@ -1,6 +1,5 @@
 library collapsible_navigation_bar;
 
-
 import 'package:flutter/material.dart';
 
 class CollapsibleNavigationBar extends StatefulWidget {
