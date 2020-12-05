@@ -101,8 +101,14 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
           left: 0,
           bottom: 0,
           child: AnimatedContainer(
-            duration: Duration(milliseconds: 250),
-            transform: Matrix4.translationValues(xOffset, yOffset, 0)
+            duration: Duration(
+              milliseconds: 250,
+            ),
+            transform: Matrix4.translationValues(
+              xOffset,
+              yOffset,
+              0,
+            )
               ..scale(1.0)
               ..rotateY(0),
             height: _lineHeight * lineCount,
@@ -112,7 +118,10 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
               boxShadow: [
                 BoxShadow(
                   blurRadius: 1,
-                  offset: Offset(-1, -1),
+                  offset: Offset(
+                    -1,
+                    -1,
+                  ),
                   color: widget.shadowColor,
                 ),
               ],
@@ -150,12 +159,19 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
       decoration: index == _selectedIndex
           ? BoxDecoration(
               border: Border(
-                bottom: BorderSide(width: 4, color: widget.activeElementColor),
+                bottom: BorderSide(
+                  width: 4,
+                  color: widget.activeElementColor,
+                ),
               ),
-              gradient: LinearGradient(colors: [
-                widget.activeElementColor.withOpacity(0.3),
-                widget.activeElementColor.withOpacity(0.015),
-              ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(
+                colors: [
+                  widget.activeElementColor.withOpacity(0.3),
+                  widget.activeElementColor.withOpacity(0.015),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
             )
           : BoxDecoration(),
       child: InkWell(
@@ -185,9 +201,10 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
             Text(
               widget.lowerTitles[index - widget.upperIcons.length],
               style: TextStyle(
-                  color: index == _selectedIndex
-                      ? widget.activeElementColor
-                      : widget.passiveactiveElementColor),
+                color: index == _selectedIndex
+                    ? widget.activeElementColor
+                    : widget.passiveactiveElementColor,
+              ),
             )
           ],
         ),
@@ -195,7 +212,9 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
     );
   }
 
-  upperElement(int index) {
+  upperElement(
+    int index,
+  ) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 250),
       height: _lineHeight,
@@ -203,12 +222,19 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
       decoration: index == _selectedIndex
           ? BoxDecoration(
               border: Border(
-                bottom: BorderSide(width: 4, color: widget.activeElementColor),
+                bottom: BorderSide(
+                  width: 4,
+                  color: widget.activeElementColor,
+                ),
               ),
-              gradient: LinearGradient(colors: [
-                widget.activeElementColor.withOpacity(0.3),
-                widget.activeElementColor.withOpacity(0.015),
-              ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(
+                colors: [
+                  widget.activeElementColor.withOpacity(0.3),
+                  widget.activeElementColor.withOpacity(0.015),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
             )
           : BoxDecoration(),
       child: InkWell(
@@ -232,9 +258,10 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
             Text(
               widget.upperTitles[index],
               style: TextStyle(
-                  color: index == _selectedIndex
-                      ? widget.activeElementColor
-                      : widget.passiveactiveElementColor),
+                color: index == _selectedIndex
+                    ? widget.activeElementColor
+                    : widget.passiveactiveElementColor,
+              ),
             )
           ],
         ),
@@ -249,48 +276,57 @@ class _CollapsibleNavigationBarState extends State<CollapsibleNavigationBar> {
       decoration: _selectedIndex > 4
           ? BoxDecoration(
               border: Border(
-                bottom: BorderSide(width: 4, color: widget.activeElementColor),
+                bottom: BorderSide(
+                  width: 4,
+                  color: widget.activeElementColor,
+                ),
               ),
-              gradient: LinearGradient(colors: [
-                widget.activeElementColor.withOpacity(0.3),
-                widget.activeElementColor.withOpacity(0.015),
-              ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              gradient: LinearGradient(
+                colors: [
+                  widget.activeElementColor.withOpacity(0.3),
+                  widget.activeElementColor.withOpacity(0.015),
+                ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
             )
           : BoxDecoration(),
       child: InkWell(
-          onTap: () {
-            if (isNavBarOpen) {
-              setState(() {
-                yOffset = _lineHeight * (lineCount - 1);
-                isNavBarOpen = false;
-              });
-            } else {
-              setState(() {
-                yOffset = 0;
-                isNavBarOpen = true;
-              });
-            }
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                isNavBarOpen
-                    ? widget.dropDownIconWhenOpen
-                    : widget.dropDownIconWhenClose,
+        onTap: () {
+          if (isNavBarOpen) {
+            setState(() {
+              yOffset = _lineHeight * (lineCount - 1);
+              isNavBarOpen = false;
+            });
+          } else {
+            setState(() {
+              yOffset = 0;
+              isNavBarOpen = true;
+            });
+          }
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              isNavBarOpen
+                  ? widget.dropDownIconWhenOpen
+                  : widget.dropDownIconWhenClose,
+              color: _selectedIndex > 4
+                  ? widget.activeElementColor
+                  : widget.passiveactiveElementColor,
+            ),
+            Text(
+              widget.dropDownTitle,
+              style: TextStyle(
                 color: _selectedIndex > 4
                     ? widget.activeElementColor
                     : widget.passiveactiveElementColor,
               ),
-              Text(
-                widget.dropDownTitle,
-                style: TextStyle(
-                    color: _selectedIndex > 4
-                        ? widget.activeElementColor
-                        : widget.passiveactiveElementColor),
-              )
-            ],
-          )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
